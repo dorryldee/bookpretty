@@ -13,23 +13,29 @@
   <form method="POST" action="{% url 'book' %}">
     {% csrf_token %}
 
-    <h3>Select Services:</h3>
-  
+    <h3 class="mb-3">Select Services:</h3>
+    <div class="mb-4">
     {% for service in services %}
+    <div class="form-check mb-2">
         <label>
             <input type="checkbox" name="services" value="{{ service.id }}">
             {{ service.name }} - KSh {{ service.price }} ({{ service.duration }} min)
         </label><br>
+    </div>
     {% endfor %}
-
+   </div>
+  <div class="mb-4">
     <label for="date">Date:</label>
     <input type="date" id="date" name="date" required><br>
+    </div>
 
-    <label for="time">Time:</label>
-    <input type="time" id="time" name="time" required><br>
-
-    <button type="submit">Book Appointment</button>
-    <a class="btn btn-secondary mt-3" href="{% url 'logout' %}">Log out</a>
+   
+   <div class="mb-4">
+        <label for="time">Choose Time</label>
+        <input type="time" id="time" name="time" class="form-control" required>
+    </div>
+    <button  type="submit" class="btn btn-primary px-4 py-2 fw-bold shadow-sm rounded-pill">Book Appointment</button>
+    <a class="btn btn-secondary px-4 py-2 fw-semibold mt-3 rounded-3 shadow-sm" href="{% url 'logout' %}">Log out</a>
 
 </form>
 </div>
