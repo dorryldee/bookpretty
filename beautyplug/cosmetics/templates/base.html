@@ -1,0 +1,143 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BookPretty{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg "  style="padding-top: 0px;">
+  <div class="container-fluid navbar">
+    <a class="navbar-brand brand" href="{% url 'homepage'%}">
+      <h1> <span class="glam">Glam</span> <span class="beauty">Beauty</span></h1></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-dark" aria-current="page" href="{% url 'homepage'%}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'services'%}">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'aboutpage'%}" >About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contactpage'%}" >Contact</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'registerpage'%}">Sign In</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'loginpage'%}">Login</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        {% if user.is_authenticated %}
+             <a href="{% url 'book' %}" class="btn btn-success btn-lg">Book Now</a>
+        {% else %}
+            <a href="{% url 'loginpage' %}" class="btn btn-success btn-lg">Sign in to Book</a>
+            {% endif %}
+      </form>
+    </div>
+  </div>
+</nav>
+<main class="mt-0">
+  <div class="container-fluid">
+        <div class="row">
+            {# Sidebar only visible to admin users (staff or superuser) #}
+            {% if user.is_staff or user.is_superuser %}
+            <div class="col-md-2 d-none d-md-block sidebar">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'admin_dashboard' %}active{% endif %}" 
+                               href="{% url 'dashboard' %}">
+                                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'add_client' %}active{% endif %}" 
+                               href="{% url 'add' %}">
+                                <i class="fas fa-user-plus me-2"></i>Add Client
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'add_client' %}active{% endif %}" 
+                               href="{% url 'list' %}">
+                                <i class="fas fa-user-plus me-2"></i>All Clients
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'addservice' %}">
+                                <i class="fas fa-chart-bar me-2"></i>Add Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'serviceslist' %}">
+                                <i class="fas fa-cog me-2"></i>New services
+                            </a>
+                        </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{% url 'bookinglist' %}">
+                                <i class="fas fa-cog me-2"></i>Booking List
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10">
+            {% else %}
+            {# No sidebar: give content full width on non-admins #}
+            <div class="col-12">
+            {% endif %}
+
+                <!-- Messages -->
+                {% if messages %}
+                <div class="mt-3">
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+<main class="mt-0 m-0 p-0 ms-0 me-0">            
+    {% block content %}
+
+    {% endblock %}
+</main>
+<footer class="text-center mt-4">© 2025 BloomBeauty.All Rights Reserved</footer>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69338149f3de8d19807979c0/1jboj22bo';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+   <script>
+        // Auto-dismiss alerts after 5 seconds
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('.alert').alert('close');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

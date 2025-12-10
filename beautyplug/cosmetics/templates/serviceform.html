@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{% if object %}Edit{% else %}Add{% endif %} Service{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <h2>{% if object %}Edit{% else %}Add{% endif %} Service</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="mb-3">
+            {{ form.name.label_tag }}<br>
+            {{ form.name }}
+        </div>
+
+        <!-- <div class="mb-3">
+            {{ form.image.label_tag }}<br>
+            {{ form.image }}
+        </div> -->
+
+        <!-- <div class="mb-3">
+            {{ form.description.label_tag }}<br>
+            {{ form.description }}
+        </div> -->
+
+        <div class="mb-3">
+            {{ form.price.label_tag }}<br>
+            {{ form.price }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.duration.label_tag }}<br>
+            {{ form.duration }}
+            <small class="form-text text-muted">Enter duration as hours and minutes (HH:MM)</small>
+        </div>
+
+        <!-- <div class="mb-3">
+            {{ form.is_active.label_tag }}<br>
+            {{ form.is_active }}
+        </div> -->
+
+         <button class="btn btn-primary" type="submit"> Save </button>
+        <a class="btn btn-secondary" href="{% url 'serviceslist' %}">Cancel</a>
+    </form>
+</div>
+{% endblock %}

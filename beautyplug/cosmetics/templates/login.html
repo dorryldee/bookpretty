@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% load static %}
+
+ <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow p-4" style="width: 28rem; border-radius: 12px;">
+      <h3 class="text-center mb-3">Login</h3>
+
+      {# Display framework messages (errors/success) #}
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="alert alert-danger" role="alert">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+
+      {# Field and non-field errors from the AuthenticationForm #}
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {{ form.non_field_errors }}
+        </div>
+      {% endif %}
+
+      <form method="post" action="{% url 'loginpage' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+
+        <div class="mb-3">
+          <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+          {{ form.username }}
+          {% if form.username.errors %}
+            <div class="text-danger small">{{ form.username.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="mb-3">
+          <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
+          {{ form.password }}
+          {% if form.password.errors %}
+            <div class="text-danger small">{{ form.password.errors }}</div>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+
+        <p class="text-center mt-3 mb-0">
+          Don't have an account? <a href="{% url 'registerpage' %}">Register</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

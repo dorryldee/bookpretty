@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>All Bookings</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Client</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+           {% for booking in bookings %}
+<tr>
+    <td>{{ booking.client.username }}</td>
+    <td>
+        {% for service in booking.services.all %}
+            {{ service.name }} - KSh {{ service.price }} ({{ service.duration }} min)
+            {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </td>
+    <td>{{ booking.date }}</td>
+    <td>{{ booking.time }}</td>
+    <td>KSh {{ booking.total_price }}</td>
+    <td>{{ booking.status }}</td>
+</tr>
+{% endfor %}

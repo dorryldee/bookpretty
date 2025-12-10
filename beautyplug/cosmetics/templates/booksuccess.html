@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Booking Successful!</h1>
+
+    {% if booking %}
+        <p><strong>Services:</strong> {{ booking.services|join:", " }}</p>
+        <p><strong>Total Cost:</strong> KSh {{ booking.total_cost }}</p>
+        <p><strong>Duration:</strong> {{ booking.duration }}</p>
+        <p><strong>Date:</strong> {{ booking.date }}</p>
+        <p><strong>Time:</strong> {{ booking.time }}</p>
+    {% else %}
+        <p>No booking information available.</p>
+    {% endif %}
+
+    <a href="{% url 'book' %}">Book Another Appointment</a>
+{% endblock %}

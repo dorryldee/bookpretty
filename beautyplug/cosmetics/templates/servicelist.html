@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Our Services{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">Our Services</h2>
+    <div class="row">
+        {% if services %}
+        {% for service in services %}
+            <div class="col-md-4 mb-3">
+                <div class="card p-3 shadow-sm">
+                    <h5>{{ service.name }}</h5>
+                    <!-- {% if service.image %}
+                        <img src="{{ service.image.url }}" class="img-fluid" alt="{{ service.name }}">
+                    {% endif %} -->
+                    <p>{{ service.description }}</p>
+                    <p><strong>Price:</strong> Ksh{{ service.price }}</p>
+                    <p><strong>Duration:</strong> {{ service.duration }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No services available.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

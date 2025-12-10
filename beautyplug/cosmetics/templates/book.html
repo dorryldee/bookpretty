@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Book an Appointment</h2>
+    {% if messages %}
+        {% for message in messages %}
+             <p class="{% if message.tags == 'error' %}text-red{% else %}text-green{% endif %}">
+                {{ message }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+  <form method="POST" action="{% url 'book' %}">
+    {% csrf_token %}
+
+    <h3>Select Services:</h3>
+  
+    {% for service in services %}
+        <label>
+            <input type="checkbox" name="services" value="{{ service.id }}">
+            {{ service.name }} - KSh {{ service.price }} ({{ service.duration }} min)
+        </label><br>
+    {% endfor %}
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required><br>
+
+    <label for="time">Time:</label>
+    <input type="time" id="time" name="time" required><br>
+
+    <button type="submit">Book Appointment</button>
+    <a class="btn btn-secondary mt-3" href="{% url 'logout' %}">Log out</a>
+
+</form>
+</div>
+{% endblock %}

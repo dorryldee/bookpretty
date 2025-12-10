@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{% if object %}Edit{% else %}Add{% endif %} Client{% endblock %}
+{% block content %}
+<section class="p-3">
+  <div class="container">
+    <h2>{% if object %}Edit{% else %}Add{% endif %} Client</h2>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div class="row">
+        <div class="col-md-6">
+          {{ form.first_name.label_tag }} {{ form.first_name }}
+        </div>
+        <div class="col-md-6">
+          {{ form.last_name.label_tag }} {{ form.last_name }}
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-6">
+          {{ form.email.label_tag }} {{ form.email }}
+        </div>
+        <div class="col-md-6">
+          {{ form.phone.label_tag }} {{ form.phone }}
+        </div>
+      </div>
+      <div class="mt-2">
+        {{ form.address.label_tag }} {{ form.address }}
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-4">
+          {{ form.dob.label_tag }} {{ form.dob }}
+        </div>
+        <div class="col-md-4">
+          {{ form.avatar.label_tag }} {{ form.avatar }}
+        </div>
+        <div class="col-md-4">
+          {{ form.is_active.label_tag }} {{ form.is_active }}
+        </div>
+      </div>
+      
+                <!-- <div class="mb-3">
+    <label class="form-label">Select Services</label>
+    <div class="border rounded p-3">
+
+       
+        <div class="mb-2"><strong>Wig Installation</strong></div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service1" value="Haircut - Short Hair" data-price="500" data-duration="30">
+            <label class="form-check-label" for="service1">Human Hair<span class="text-muted">- KSh 500 | 30 mins</span></label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service2" value="Haircut - Long Hair" data-price="800" data-duration="60">
+            <label class="form-check-label" for="service2">Classic wigs <span class="text-muted">- KSh 800 | 1 hour</span></label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service3" value="Braiding - Basic" data-price="1500" data-duration="120">
+            <label class="form-check-label" for="service3">Bob wigs <span class="text-muted">- KSh 1500 | 2 hours</span></label>
+        </div>
+
+        <hr>
+        
+        <div class="mb-2"><strong>Braided Hairstyles</strong></div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service4" value="Whole Body Massage" data-price="2500" data-duration="60">
+            <label class="form-check-label" for="service4">Knotless <span class="text-muted">- KSh 2500 | 1 hour</span></label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service5" value="Legs Massage" data-price="1200" data-duration="30">
+            <label class="form-check-label" for="service5">Boho Braids <span class="text-muted">- KSh 1200 | 30 mins</span></label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service6" value="Back Massage" data-price="1500" data-duration="45">
+            <label class="form-check-label" for="service6">Butterfly Braids <span class="text-muted">- KSh 1500 | 45 mins</span></label>
+        </div>
+    </div>
+
+    <hr>
+   
+        <div class="mb-2"><strong>Facial Services</strong></div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service4" value="Whole Body Massage" data-price="2500" data-duration="60">
+            <label class="form-check-label" for="service4">Anti Aging <span class="text-muted">- KSh 2500 | 1 hour</span></label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service5" value="Legs Massage" data-price="1200" data-duration="30">
+            <label class="form-check-label" for="service5">Deep Cleansing Facial <span class="text-muted">- KSh 1200 | 30 mins</span></label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service6" value="Back Massage" data-price="1500" data-duration="45">
+            <label class="form-check-label" for="service6">Acne Facial<span class="text-muted">- KSh 1500 | 45 mins</span></label>
+        </div>
+    </div>
+    <hr>
+   
+        <div class="mb-2"><strong>Nail Art Design Services</strong></div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service4" value="Whole Body Massage" data-price="2500" data-duration="60">
+            <label class="form-check-label" for="service4">Square Acrylic Nails <span class="text-muted">- KSh 2500 | 1 hour</span></label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service5" value="Legs Massage" data-price="1200" data-duration="30">
+            <label class="form-check-label" for="service5">Almond Nails<span class="text-muted">- KSh 1200 | 30 mins</span></label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service6" value="Back Massage" data-price="1500" data-duration="45">
+            <label class="form-check-label" for="service6">Stiletto Nails <span class="text-muted">- KSh 1500 | 45 mins</span></label>
+        </div>
+    </div>
+
+      <hr>
+        <div class="mb-2"><strong>Massage Services</strong></div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service4" value="Whole Body Massage" data-price="2500" data-duration="60">
+            <label class="form-check-label" for="service4">Whole Body Massage <span class="text-muted">- KSh 2500 | 1 hour</span></label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service5" value="Legs Massage" data-price="1200" data-duration="30">
+            <label class="form-check-label" for="service5">Stone Massage <span class="text-muted">- KSh 1200 | 30 mins</span></label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input service-checkbox" type="checkbox" id="service6" value="Back Massage" data-price="1500" data-duration="45">
+            <label class="form-check-label" for="service6">Reflexology Massage <span class="text-muted">- KSh 1500 | 45 mins</span></label>
+        </div>
+    </div>
+<hr> -->
+      
+      <div class="mt-2">
+        {{ form.notes.label_tag }} {{ form.notes }}
+      </div>
+      <div class="mt-3">
+      <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-secondary" href="{% url 'dashboard' %}">Cancel</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

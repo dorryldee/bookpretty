@@ -1,0 +1,36 @@
+from django.urls import path
+from . import views
+from . import admin_views
+
+urlpatterns = [
+    path('',views.home,name='homepage'),
+    path('services/', views.service_list, name='services'),
+    path('services/', views.Service, name='servicepage'),
+    path('about/',views.about,name='aboutpage'),
+    path('register/',views.register,name='registerpage'),
+    path('login/',views.login_view,name='loginpage'),
+    path('contact/',views.contact,name='contactpage'),
+    path('book/', views.book, name='book'),
+    path('book/success/', views.booking_success, name='booksuccess'),
+    path("logout/", views.logout_view, name="logout"),
+    path('contact/', views.contact, name='contact_form'),
+    path('services/all/', views.allservices, name='allservices'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('list/', views.ClientListView.as_view(), name='list'),
+    path('add/', views.ClientCreateView.as_view(), name='add'),
+    path('<int:pk>/edit/', views.ClientUpdateView.as_view(), name='edit'),
+    path('<int:pk>/', views.ClientDetailView.as_view(), name='detail'),
+    path('<int:pk>/delete/', views.ClientDeleteView.as_view(), name='delete'),
+    path('<int:pk>/approve/', views.ApproveClientView.as_view(), name='approve'),
+    path('<int:pk>/reject/', views.RejectClientView.as_view(), name='reject'),
+    path('serviceslist/', views.ServiceListView.as_view(), name='serviceslist'),
+    path('services/add/', views.ServiceCreateView.as_view(), name='addservice'),
+    path('services/<int:pk>/edit/', views.ServiceUpdateView.as_view(), name='editservice'),
+    path('bookings/', views.booking_list, name='bookinglist'),
+    path('book/', views.book_appointment, name='book_appointment'),
+    path('admin/bookings/', admin_views.admin_bookings, name='admin_bookings'),
+    path('admin/approve/<int:id>/', admin_views.approve_booking, name='approve_booking'),
+    path('admin/reject/<int:id>/', admin_views.reject_booking, name='reject_booking'),
+    path("admin/clients/", views.admin_client_list, name="admin_clients"),
+    path("admin/clients/add/", views.add_personal_client, name="add_personal_client"),
+]

@@ -1,0 +1,59 @@
+:root {
+  --bs-secondary: #ff6347; 
+  --bs-secondary-bg-rgb: 255, 99, 71; 
+}
+
+.navbar{
+    background-color: #e49fc2;
+
+}
+
+.nav-item{
+    padding-right: 50px;
+}
+.brand {
+  font-family: 'Dancing Script', cursive;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.brand .glam { color: #000000; }  
+.brand .beauty { color: #f93c9b; 
+}
+
+.btn{
+    background-color: #f93c9b; ;
+}
+.card-img{
+    padding-top: 0px;
+}
+.shadow-dark {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.shadow-dark:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+}
+.contact-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -30px; /* half of circle height */
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+
+

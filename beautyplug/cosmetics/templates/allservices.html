@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}All Services{% endblock %}
+{% block content %}
+
+<div class="container mt-4 d-grid gap-5">
+    <h1>Welcome {{ user.username }}!</h1>
+
+    <!-- Hair Services Category -->
+    <section class="py-5 bg-light-subtle shadow-dark">
+        <h2 class="mb-4">Wig Installation</h2>
+        <div class="row">
+            <!-- Haircut Short -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/human.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Human Hair">
+                    <div class="card-body">
+                        <h5 class="card-title">Human Hair</h5>
+                        <p class="card-text">Professional haircut with styling.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 10000 | Duration: 1 hour</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Haircut Long -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                   <img src="{% static 'images/classic.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
+                    <div class="card-body">
+                        <h5 class="card-title">Classic wigs</h5>
+                        <p class="card-text">Professional haircut for long hair.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 8000 | Duration: 50 minutes</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Braiding -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/bobwig.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
+                    <div class="card-body">
+                        <h5 class="card-title">Bob wigs</h5>
+                        <p class="card-text">Stylish basic braids.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 4000 | Duration: 1 hour</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-secondary-subtle shadow-dark">
+
+        <h2 class="mb-4">Braided Hairstyles</h2>
+        <div class="row">
+            
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/knotless.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Human Hair">
+                    <div class="card-body">
+                        <h5 class="card-title">Knotless</h5>
+                        <p class="card-text">Professional haircut with styling.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 1000 | Duration: 1hr 30mins</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Haircut Long -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                   <img src="{% static 'images/boho.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
+                    <div class="card-body">
+                        <h5 class="card-title">Boho Braids</h5>
+                        <p class="card-text">Professional haircut for long hair.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 1500 | Duration:2 hours</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Braiding -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/butterfly.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
+                    <div class="card-body">
+                        <h5 class="card-title">Butterfly Braids</h5>
+                        <p class="card-text">Stylish basic braids.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 1200 | Duration: 1 hour</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <section class="py-5 bg-light-subtle shadow-dark">
+        <h2 class="mb-4">Facial Services</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/deepclean.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Human Hair">
+                    <div class="card-body">
+                        <h5 class="card-title">Deep Cleansing Facial</h5>
+                        <p class="card-text">Professional haircut with styling.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 1800 | Duration: 2 hours</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                   <img src="{% static 'images/aging.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
+                    <div class="card-body">
+                        <h5 class="card-title">Anti-Aging Facial</h5>
+                        <p class="card-text">Professional haircut for long hair.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 3500 | Duration: 1 hour 25 minutes</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/acne.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
+                    <div class="card-body">
+                        <h5 class="card-title">Acne Facial</h5>
+                        <p class="card-text">Stylish basic braids.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 4500 | Duration: 2 hour</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-secondary-subtle shadow-dark">
+        <h2 class="mb-4">Nail Art Design Services</h2>
+        <div class="row">
+            <!-- Haircut Short -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/square.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Human Hair">
+                    <div class="card-body">
+                        <h5 class="card-title">Square Acrylic Nails</h5>
+                        <p class="card-text">Professional haircut with styling.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 550 | Duration: 40 minutes</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                   <img src="{% static 'images/almond.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
+                    <div class="card-body">
+                        <h5 class="card-title">Almond Nails</h5>
+                        <p class="card-text">Professional haircut for long hair.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 600 | Duration: 45 minutes</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/stilleto.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
+                    <div class="card-body">
+                        <h5 class="card-title">Stiletto Nails</h5>
+                        <p class="card-text">Stylish basic braids.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 900 | Duration: 50 minutes</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="py-5 bg-light-subtle shadow-dark ">
+        <h2 class="mb-4">Massage Services</h2>
+        <div class="row">
+            <!-- Haircut Short -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/stone.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Human Hair">
+                    <div class="card-body">
+                        <h5 class="card-title">whole body massage</h5>
+                        <p class="card-text">Professional haircut with styling.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 10000 | Duration: 2 hours</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                   <img src="{% static 'images/swedish.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
+                    <div class="card-body">
+                        <h5 class="card-title">Stone Massage</h5>
+                        <p class="card-text">Professional haircut for long hair.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 6000 | Duration: 1 hour 20 minutes</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/reflexology.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
+                    <div class="card-body">
+                        <h5 class="card-title">Reflexology Massage</h5>
+                        <p class="card-text">Stylish basic braids.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small>Price: KSh 4500 | Duration: 1 hour</small>
+                        <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+{% endblock %}

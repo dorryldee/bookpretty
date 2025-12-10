@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<section id="contact" class="py-5 bg-body-tertiary">
+  <div class="container">
+    <h2 class="text-center mb-5">
+      <b style="font-size: 35px;">Contact Us</b><br>
+      Get in touch with us easily
+    </h2>
+
+    <div class="row g-4">
+
+      <!-- Call Us Card -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card contact-card text-center p-4 shadow-sm position-relative">
+          <div class="icon-circle bg-primary text-white position-absolute top-0 start-50 translate-middle rounded-circle">
+            <i class="fa-solid fa-phone fa-2x"></i>
+          </div>
+          <h5 class="fw-bold mt-5">Call Us</h5>
+          <p class="text-muted">Reach us directly via phone for quick assistance.</p>
+          <a href="tel:+254714883565" class="btn btn-primary mt-2">Call Now</a>
+        </div>
+      </div>
+
+      <!-- Live Chat Card -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card contact-card text-center p-4 shadow-sm position-relative">
+          <div class="icon-circle bg-success text-white position-absolute top-0 start-50 translate-middle rounded-circle">
+            <i class="fa-solid fa-comments fa-2x"></i>
+          </div>
+          <h5 class="fw-bold mt-5">Live Chat</h5>
+          <p class="text-muted">Chat instantly with our support team.</p>
+          <button class="btn btn-success mt-2" id="startLiveChat">Chat Now</button>
+        </div>
+      </div>
+
+      <!-- Ask a Question Card -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card contact-card text-center p-4 shadow-sm position-relative">
+          <div class="icon-circle bg-warning text-white position-absolute top-0 start-50 translate-middle rounded-circle">
+            <i class="fa-solid fa-question fa-2x"></i>
+          </div>
+          <h5 class="fw-bold mt-5">Ask a Question</h5>
+          <p class="text-muted">Send us a message and we will get back to you via email.</p>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-warning mt-2" data-bs-toggle="modal" data-bs-target="#askQuestionModal">
+            Send Message
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </section>
+  <section>
+      <div class="text-center mt-3">
+      <a href="https://facebook.com" class="mx-2 text-primary"><i class="fa-brands fa-facebook fa-2x"></i></a>
+      <a href="https://twitter.com" class="mx-2 text-info"><i class="fa-brands fa-twitter fa-2x"></i></a>
+      <a href="https://instagram.com" class="mx-2 text-danger"><i class="fa-brands fa-instagram fa-2x"></i></a>
+    </div>
+
+    <!-- Google Map -->
+    <div class="mt-5">
+      <h3 class="text-center mb-3 ms-5">Our Location</h3>
+      <div class="map-responsive">
+       <iframe class="ms-5 t" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15958.101051430416!2d34.7865088!3d-0.6944486500000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2ske!4v1764984083424!5m2!1sen!2ske" 
+       width="900" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+         
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Ask Question Modal -->
+<div class="modal fade" id="askQuestionModal" tabindex="-1" aria-labelledby="askQuestionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="askQuestionModalLabel">Ask a Question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+<div class="modal-body">
+  <form method="POST" action="{% url 'contact_form' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary w-100">Send</button>
+  </form>
+
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="alert alert-success mt-2">{{ msg }}</div>
+    {% endfor %}
+    {% comment %}Messages will be consumed and won't appear again{% endcomment %}
+  {% endif %}
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chatButton = document.getElementById('startLiveChat');
+  chatButton.addEventListener('click', function() {
+    if (typeof Tawk_API !== 'undefined') {
+      Tawk_API.maximize(); // opens the chat window
+    }
+  });
+});
+</script>
+
+{% endblock %}
+
+<!-- Make sure Bootstrap JS is loaded for modal to work -->
+<script src="{% static 'js/bootstrap.min.js'%}"></script>

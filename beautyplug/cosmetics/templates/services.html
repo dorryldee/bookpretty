@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Services{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 text-center bg-secondary text-white">
+    <div class="container">
+        <h1 class="display-4 mb-3">Our Services</h1>
+        <p class="lead mb-4">From head to toe, we offer a complete range of beauty and wellness treatments designed to help you look and feel your absolute best.</p>
+        <div class="container my-5 ">
+  <div class="row justify-content-center">
+
+    <!-- Card 1 -->
+    <div class="col-12 col-lg-6 mb-4">
+      <div class="card bg-dark-subtle shadow-dark" style="width: 100%;">
+        <img src="{% static 'images/hair.jpg' %}" class="card-img-top shadow-dark" style="height:200px; object-fit:cover;" alt="Image 1">
+        <div class="card-body">
+          <h5 class="card-title">Hair Styling</h5>
+          <p class="card-text">  From elegant updos to everyday looks, our expert stylists create the perfect style tailored for you.</p>
+         
+        </div>
+      </div> 
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-12 col-lg-6 mb-4">
+      <div class="card bg-dark-subtle shadow-dark" style="width: 100%;">
+        <img src="{% static 'images/facial.jpg' %}"  class="card-img-top shadow-dark" style="height:200px; object-fit:cover;" alt="Image 2">
+        <div class="card-body">
+          <h5 class="card-title">Facial Treatment</h5>
+          <p class="card-text"> Revitalize and refresh your skin with our luxurious facial treatments. Tailored to your skin type, our facials cleanse hydrate and rejuvenate, leaving your complexion radiant and glowing.</p>
+           
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-12 col-lg-6 mb-4">
+      <div class="card bg-dark-subtle shadow-dark" style="width: 100%;">
+        <img src="{% static 'images/makeup.jpg'%}"  class="card-img-top shadow-dark" style="height:200px; object-fit:cover;" alt="Image 3">
+        <div class="card-body">
+          <h5 class="card-title">Makeup Artistry</h5>
+          <p class="card-text">Professional makeup for all occasions — enhancing your features while staying true to your style.</p>
+           
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 mb-4 ">
+      <div class="card bg-dark-subtle shadow-dark" style="width: 100%;">
+        <img src="{% static 'images/nails.jpg'%}" class="card-img-top shadow-dark" style="height:200px; object-fit:cover;" alt="Human Hair">
+        <div class="card-body">
+          <h5 class="card-title">Manicure & Pedicure</h5>
+          <p class="card-text">Trendy nail designs and professional manicures & pedicures to make your hands and feet look amazing.</p>
+         
+        </div>
+      </div>
+    </div>
+        <div class="col-12 col-lg-6 mb-4">
+      <div class="card bg-dark-subtle shadow-dark" style="width: 100%;">
+        <img src="{% static 'images/massage.jpg'%}"  class="card-img-top shadow-dark" style="height:200px; object-fit:cover;" alt="Image 3">
+        <div class="card-body">
+          <h5 class="card-title">Massage</h5>
+          <p class="card-text"> Relaxing massages and wellness therapies that ease tension and rejuvenate the body and mind.</p>
+           
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+       
+                  <div class="card-footer d-flex justify-content-between align-items-center">
+                    <a href="{% url 'allservices' %}" class="btn btn-primary">View More</a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'book' %}" class="btn btn-sm btn-success">Book Now</a>
+                        {% else %}
+                            <a href="{% url 'loginpage' %}" class="btn btn-sm btn-success">Sign In For More</a>
+                        {% endif %}
+                    </div>
+                </div>
+     
+    </div>
+</section>
+
+
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="ms-0 me-0">
+<div class="card text-bg-dark mt-0" style="padding-top: 0px;">
+  <img src="{% static 'images/beauty-bg.jpg' %}" class="card-img" style="height: 450px; padding: 0%;" alt="bg image">
+  
+  <div class="card-img-overlay d-flex flex-column justify-content-between text-dark">
+    
+   
+    <div class="text-body-tertiary-70">
+      <h1 class="display-4 fw-normal">Discover Your Natural Glow</h1>
+         <p class="lead text-muted my-3">
+      Experience premium beauty treatments in a serene and luxurious environment.
+    </p>
+    <p class="lead text-muted">
+      Book your personalized beauty journey today and let us enhance your confidence.
+    </p>
+    </div>
+    
+   
+    <div class="text-center mb-3">
+      <a href="{% url 'book'%}" class="btn btn-success mx-2">Book Appointment</a>
+      <a href="{% url 'allservices' %}" class="btn btn-primary mx-2">View More</a>
+    </div>
+    
+  </div>
+</div>
+</section>
+
+<section class="py-5 bg-light-subtle">
+<div class="custom-section bg-body-tertiary text-black-60 py-4 ">
+       <h2 class="text-center mb-4 fw-semibold">What we Offer</h2>
+        <p class="text-muted mx-auto" style="max-width: 700px;">Treatments designed for you discover our range of premium beauty services, each crafted to help you look and fell your best</p>
+     <div class="text-center my-4">
+    <a href="{% url 'services' %}">
+        <button style="background-color: #f93c9b; color: white;" class="btn btn-secondary mx-2">View More</button>
+    </a>
+</div>
+</div>
+</section>
+
+<section class="py-5 bg-secondary-subtle">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-semibold">Why Choose Us?</h2>
+      <p class="text-muted mx-auto" style="max-width: 700px;">
+        At Glam Beauty, we focus on giving every client a personalized and uplifting experience. 
+        We blend modern beauty techniques with a warm atmosphere to ensure you feel valued from 
+        the moment you walk in. Everything we do is designed to bring out your best look 
+        comfortably, confidently and consistently.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+     
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 shadow-dark border-0 text-center p-3 text-primary-emphasis bg-warning-subtle">
+          <div class="mb-3">
+            <i class="bi bi-stars fs-1 text-primary"></i>
+          </div>
+          <h5 class="fw-semibold">Expert Craftsmanship</h5>
+          <p class="text-muted">
+            We refine every service with precision and creativity, ensuring a flawless finish every time.
+          </p>
+        </div>
+      </div>
+
+   
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 shadow-dark border-0 text-center p-3 text-info-emphasis" style="background-color: #f6d7e7;">
+          <div class="mb-3">
+            <i class="bi bi-flower3 fs-1 text-primary"></i>
+          </div>
+          <h5 class="fw-semibold">Calm & Relaxing Space</h5>
+          <p class="text-muted">
+            Our environment is designed to help you unwind and enjoy a comfortable, peaceful beauty experience.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 shadow-dark border-0 text-center p-3 text-danger-emphasis bg-primary-subtle">
+          <div class="mb-3">
+            <i class="bi bi-heart fs-1 text-primary"></i>
+          </div>
+          <h5 class="fw-semibold">Genuine Care</h5>
+          <p class="text-muted">
+            We take time to understand your style so you walk out confidently yourself not a trend copy.
+          </p>
+        </div>
+      </div>
+
+    
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 shadow-dark border-0 text-center p-3 text-warning-emphasis bg-success-subtle">
+          <div class="mb-3">
+            <i class="bi bi-magic fs-1 text-primary"></i>
+          </div>
+          <h5 class="fw-semibold">Modern Tools & Safe Products</h5>
+          <p class="text-muted">
+            We use carefully selected products and advanced tools that ensure healthy, long-lasting results.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+{% endblock %}
+
