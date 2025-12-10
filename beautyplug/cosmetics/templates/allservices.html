@@ -6,17 +6,18 @@
 <div class="container mt-4 d-grid gap-5">
     <h1>Welcome {{ user.username }}!</h1>
 
-    <!-- Hair Services Category -->
+
     <section class="py-5 bg-light-subtle shadow-dark">
         <h2 class="mb-4">Wig Installation</h2>
         <div class="row">
-            <!-- Haircut Short -->
+           
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card h-100">
                     <img src="{% static 'images/human.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Human Hair">
                     <div class="card-body">
-                        <h5 class="card-title">Human Hair</h5>
-                        <p class="card-text">Professional haircut with styling.</p>
+                        <h4 class="card-title">Human Hair</h4>
+                        <p class="card-text">provides a natural look, feel, and versatility that can be styled and treated much like a client's own hair
+.</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 10000 | Duration: 1 hour</small>
@@ -30,8 +31,8 @@
                 <div class="card h-100">
                    <img src="{% static 'images/classic.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
                     <div class="card-body">
-                        <h5 class="card-title">Classic wigs</h5>
-                        <p class="card-text">Professional haircut for long hair.</p>
+                        <h4 class="card-title">Classic wigs</h4>
+                        <p class="card-text"> Full cap construction wig often machine made with wefts providing reliable coverage and a straightforward application process.</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 8000 | Duration: 50 minutes</small>
@@ -45,8 +46,8 @@
                 <div class="card h-100">
                     <img src="{% static 'images/bobwig.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
                     <div class="card-body">
-                        <h5 class="card-title">Bob wigs</h5>
-                        <p class="card-text">Stylish basic braids.</p>
+                        <h4 class="card-title">Bob wigs</h4>
+                        <p class="card-text">Focuses on the installation and styling of a short, blunt cut that typically sits around the chin or shoulders, offering a chic and low-maintenance look.</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 4000 | Duration: 1 hour</small>
@@ -66,8 +67,9 @@
                 <div class="card h-100">
                     <img src="{% static 'images/knotless.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Human Hair">
                     <div class="card-body">
-                        <h5 class="card-title">Knotless</h5>
-                        <p class="card-text">Professional haircut with styling.</p>
+                        <h4 class="card-title">Knotless</h4>
+                        <p class="card-text">Offers braids that start with the client's natural hair seamlessly incorporated at the root, rather than a bulky knot, which reduces tension and promotes comfort.
+</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 1000 | Duration: 1hr 30mins</small>
@@ -76,13 +78,13 @@
                 </div>
             </div>
 
-            <!-- Haircut Long -->
+            
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card h-100">
                    <img src="{% static 'images/boho.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
                     <div class="card-body">
-                        <h5 class="card-title">Boho Braids</h5>
-                        <p class="card-text">Professional haircut for long hair.</p>
+                        <h4 class="card-title">Boho Braids</h4>
+                        <p class="card-text">Focuses on creating a free-spirited, textured style characterized by wavy or curly hair extensions interspersed throughout the length of the braids for a softer, more voluminous look.</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 1500 | Duration:2 hours</small>
@@ -91,16 +93,16 @@
                 </div>
             </div>
 
-            <!-- Braiding -->
+
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card h-100">
                     <img src="{% static 'images/butterfly.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
                     <div class="card-body">
-                        <h5 class="card-title">Butterfly Braids</h5>
-                        <p class="card-text">Stylish basic braids.</p>
+                        <h4 class="card-title">Butterfly Braids</h4>
+                        <p class="card-text"> Involves styling the hair into large, face framing "butterfly" cornrows, where small sections are pulled from the outer edges of the braid to create a loose, flared and dimensional appearance.</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
-                        <small>Price: KSh 1200 | Duration: 1 hour</small>
+                        <small>Price: KSh 1300 | Duration: 1 hour</small>
                         <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
                     </div>
                 </div>
@@ -115,11 +117,11 @@
                 <div class="card h-100">
                     <img src="{% static 'images/deepclean.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Human Hair">
                     <div class="card-body">
-                        <h5 class="card-title">Deep Cleansing Facial</h5>
-                        <p class="card-text">Professional haircut with styling.</p>
+                        <h4 class="card-title">Deep Cleansing Facial</h4>
+                        <p class="card-text">Focuses on meticulously removing dirt, oil, and impurities from the pores through extraction and exfoliation, leaving the skin refreshed, purified and clear.</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
-                        <small>Price: KSh 1800 | Duration: 2 hours</small>
+                        <small>Price: KSh 2000 | Duration: 2 hours</small>
                         <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
                     </div>
                 </div>
@@ -130,8 +132,9 @@
                 <div class="card h-100">
                    <img src="{% static 'images/aging.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
                     <div class="card-body">
-                        <h5 class="card-title">Anti-Aging Facial</h5>
-                        <p class="card-text">Professional haircut for long hair.</p>
+                        <h4 class="card-title">Anti-Aging Facial</h4>
+                        <p class="card-text"> Treatment is designed to minimize the appearance of fine lines and wrinkles through specialized techniques and rejuvenating products that promote elasticity and skin cell turnover.
+</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 3500 | Duration: 1 hour 25 minutes</small>
@@ -145,11 +148,12 @@
                 <div class="card h-100">
                     <img src="{% static 'images/acne.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
                     <div class="card-body">
-                        <h5 class="card-title">Acne Facial</h5>
-                        <p class="card-text">Stylish basic braids.</p>
+                        <h4 class="card-title">Acne Treatment</h4>
+                        <p class="card-text">Targets breakouts and inflammation using medical-grade or clinical products that help reduce current blemishes, soothe irritation, and prevent future flare-ups for a clearer complexion.
+</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
-                        <small>Price: KSh 4500 | Duration: 2 hour</small>
+                        <small>Price: KSh 5000 | Duration: 2 hours</small>
                         <a href="{% url 'book'  %}" class="btn btn-success btn-sm">Book Now</a>
                     </div>
                 </div>
@@ -165,8 +169,8 @@
                 <div class="card h-100">
                     <img src="{% static 'images/square.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Human Hair">
                     <div class="card-body">
-                        <h5 class="card-title">Square Acrylic Nails</h5>
-                        <p class="card-text">Professional haircut with styling.</p>
+                        <h4 class="card-title">Square Acrylic Nails</h4>
+                        <p class="card-text">Creates a modern, structured look with straight, sharp edges and a flat top, which offers a sturdy and practical style ideal for shorter lengths.</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 550 | Duration: 40 minutes</small>
@@ -180,8 +184,8 @@
                 <div class="card h-100">
                    <img src="{% static 'images/almond.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
                     <div class="card-body">
-                        <h5 class="card-title">Almond Nails</h5>
-                        <p class="card-text">Professional haircut for long hair.</p>
+                        <h4 class="card-title">Almond Nails</h4>
+                        <p class="card-text">Offers a classic, elegant silhouette that tapers to a soft, rounded point, providing a sophisticated look that is less prone to breaking than a stiletto shape. </p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 600 | Duration: 45 minutes</small>
@@ -194,8 +198,9 @@
                 <div class="card h-100">
                     <img src="{% static 'images/stilleto.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
                     <div class="card-body">
-                        <h5 class="card-title">Stiletto Nails</h5>
-                        <p class="card-text">Stylish basic braids.</p>
+                        <h4 class="card-title">Stiletto Nails</h4>
+                        <p class="card-text">A dramatic and edgy appearance, shaping the acrylic to taper to a sharp, pointed tip that effectively elongates the fingers.
+</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 900 | Duration: 50 minutes</small>
@@ -214,8 +219,8 @@
                 <div class="card h-100">
                     <img src="{% static 'images/stone.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Human Hair">
                     <div class="card-body">
-                        <h5 class="card-title">whole body massage</h5>
-                        <p class="card-text">Professional haircut with styling.</p>
+                        <h4 class="card-title">Whole body massage</h4>
+                        <p class="card-text">A head to toe therapeutic session that typically covers all major muscle groups (back, neck, shoulders, arms, hands, legs, and feet) to promote overall relaxation, improve circulation and reduce general muscle tension and stress. </p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 10000 | Duration: 2 hours</small>
@@ -229,8 +234,8 @@
                 <div class="card h-100">
                    <img src="{% static 'images/swedish.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
                     <div class="card-body">
-                        <h5 class="card-title">Stone Massage</h5>
-                        <p class="card-text">Professional haircut for long hair.</p>
+                        <h4 class="card-title">Stone Massage</h4>
+                        <p class="card-text">Incorporates smooth, heated stones into the treatment, with the heat relaxing muscles and improving circulation, which allows the therapist to apply deeper pressure and melt away chronic tension and pain</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 6000 | Duration: 1 hour 20 minutes</small>
@@ -244,8 +249,8 @@
                 <div class="card h-100">
                     <img src="{% static 'images/reflexology.jpg' %}" class="card-img-top" style="height:300px; object-fit:cover;" alt="Braiding Basic">
                     <div class="card-body">
-                        <h5 class="card-title">Reflexology Massage</h5>
-                        <p class="card-text">Stylish basic braids.</p>
+                        <h4 class="card-title">Reflexology Massage</h4>
+                        <p class="card-text">Applies pressure to specific points on the feet, hands, or ears, which correspond to different organs and systems in the body, aiming to stimulate natural healing processes.</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <small>Price: KSh 4500 | Duration: 1 hour</small>
@@ -256,6 +261,11 @@
         </div>
     </section>
 
+</div>
+<div class="text-center mt-5">
+    <p class="fw-semibold text-muted fst-italic">
+        Beauty made simple, just a click away.
+    </p>
 </div>
 
 {% endblock %}

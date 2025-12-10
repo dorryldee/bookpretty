@@ -287,7 +287,7 @@ class ServiceUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
 
 @login_required
 def book(request):
-    services = Service.objects.all()  # fetch all services from DB
+    services = Service.objects.all()  # fetches all services from DB
 
     if request.method == "POST":
         # Get the selected services IDs from form
@@ -324,61 +324,7 @@ def book(request):
 
     return render(request, "book.html", {"services": services})
 
-# def book(request):
-#     services_data = [
-#         {"name": "Haircut - Short Hair", "price": 500, "duration": 30},
-#         {"name": "Haircut - Long Hair", "price": 800, "duration": 60},
-#         {"name": "Braiding - Basic", "price": 1500, "duration": 120},
-#         {"name": "Whole Body Massage", "price": 2500, "duration": 60},
-#         {"name": "Legs Massage", "price": 1200, "duration": 30},
-#         {"name": "Back Massage", "price": 1500, "duration": 45},
-#     ]
 
-#     if request.method == 'POST':
-#         selected_services_names = request.POST.get('service', '')
-#         date = request.POST.get('date')
-#         time = request.POST.get('time')
-
-#         if not selected_services_names:
-#             messages.error(request, "Please select at least one service.")
-#             return render(request, 'book.html', {'services': services_data})
-
-#         selected_services_list = selected_services_names.split(', ')
-
-#         total_cost = 0
-#         total_minutes = 0
-
-#         # Calculate total cost and duration
-#         for service_name in selected_services_list:
-#             for s in services_data:
-#                 if s['name'] == service_name:
-#                     total_cost += s['price']
-#                     total_minutes += s['duration']
-#                     break
-
-#         # Convert minutes to hours and minutes for display
-#         hours = total_minutes // 60
-#         minutes = total_minutes % 60
-#         duration_text = ''
-#         if hours > 0:
-#             duration_text += f"{hours} hr"
-#             if hours > 1:
-#                 duration_text += 's'
-#         if minutes > 0:
-#             if hours > 0:
-#                 duration_text += ' '
-#             duration_text += f"{minutes} min"
-#         if hours == 0 and minutes == 0:
-#             duration_text = '0 min'
-
-#         messages.success(
-#             request,
-#             f"Booking successful! Services: {', '.join(selected_services_list)} | Total: KSh {total_cost} | Duration: {duration_text}"
-#         )
-#         return redirect('booksuccess') 
-
-#     return render(request, 'book.html', {'services': services_data})
-   
 @user_passes_test(staff_check, login_url="/login/")
 def booking_list(request):
     bookings = Appointment.objects.all().order_by('-date', '-time')  # Always assigned
