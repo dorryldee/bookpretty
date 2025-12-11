@@ -13,7 +13,7 @@
   <form method="POST" action="{% url 'book' %}">
     {% csrf_token %}
 
-    <h3 class="mb-3">Select Services:</h3>
+    <h3 class="mb-3"><p>Select </p>Services:</h3>
     <div class="mb-4">
     {% for service in services %}
     <div class="form-check mb-2">

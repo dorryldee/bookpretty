@@ -390,12 +390,30 @@ def dashboard(request):
 @user_passes_test(is_admin, login_url='login')
 def update_booking_status(request, booking_id, action):
     booking = get_object_or_404(Booking, id=booking_id)
-    if action == 'approve':
-        booking.status = 'Approved'
-    elif action == 'reject':
-        booking.status = 'Rejected'
+
+    # Update booking status
+    if action == "approve":
+        booking.status = "Approved"
+        message_text = "Your appointment has been approved."
+    elif action == "reject":
+        booking.status = "Rejected"
+        message_text = "Your appointment has been rejected."
+    
     booking.save()
-    messages.success(request, f'Booking status updated to {booking.status}')
+
+    # Client email (always from User model)
+    email_to = booking.client.email
+
+    # Send email
+    send_mail(
+        subject="Booking Status Update",
+        message=f"Hello {booking.client.username},\n\n{message_text}\n\nThank you for choosing us.",
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[email_to],
+        fail_silently=False,
+    )
+
+    messages.success(request, f"Booking {action}d and email sent to client.")
     return redirect('dashboard')
 
 @user_passes_test(is_admin, login_url='login')
