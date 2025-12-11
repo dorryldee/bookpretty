@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render,  get_object_or_404, resolve_url
 from django.urls import  reverse_lazy
 from django.core.mail import send_mail
+from django.contrib import messages
 from django.conf import settings
 from .forms import  AppointmentForm, RegisterForm, ClientForm, ContactForm, ReviewForm, ServiceForm 
 from . models import  Appointment, Booking, Service, Client
@@ -391,25 +392,37 @@ def dashboard(request):
 def update_booking_status(request, booking_id, action):
     booking = get_object_or_404(Booking, id=booking_id)
 
-    # Update booking status
     if action == "approve":
         booking.status = "Approved"
-        message_text = "Your appointment has been approved."
+        email_subject = "Your Booking Has Been Approved!"
+        email_message = (
+            f"Hello {booking.client.username},\n\n"
+            "Good news! Your booking has been approved.\n"
+            f"Date: {booking.date}\n"
+            f"Time: {booking.time}\n\n"
+            "We look forward to serving you.\n"
+            "Thank you for choosing us!"
+        )
+
     elif action == "reject":
         booking.status = "Rejected"
-        message_text = "Your appointment has been rejected."
+        email_subject = "Booking Update – Your Booking Was Not Approved"
+        email_message = (
+            f"Hello {booking.client.username},\n\n"
+            "We apologize for the inconvenience caused.\n"
+            "Unfortunately, your booking has been rejected due to a fixed booking schedule.\n"
+            "Please feel free to book another time.\n\n"
+            "Thank you for choosing us!"
+        )
+
     
     booking.save()
 
-    # Client email (always from User model)
-    email_to = booking.client.email
-
-    # Send email
     send_mail(
-        subject="Booking Status Update",
-        message=f"Hello {booking.client.username},\n\n{message_text}\n\nThank you for choosing us.",
+        subject=email_subject,
+        message=email_message,
         from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[email_to],
+        recipient_list=[booking.client.email],
         fail_silently=False,
     )
 
