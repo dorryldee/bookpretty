@@ -18,10 +18,21 @@ User = get_user_model()
 #     def __str__(self):
 #         return self.name
 class Service(models.Model):
+    CATEGORY_CHOICES = [
+        ("Wig Installation", "Wig Installation"),
+        ("Braided Hairstyles", "Braided Hairstyles"),
+        ("Facial Services", "Facial Services"),
+        ("Nail Art Design Services", "Nail Art Design Services"),
+        ("Massage Services", "Massage Services"),
+    ]
+
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     duration = models.DurationField()
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    is_active = models.BooleanField(default=False)
+    image = models.ImageField(upload_to="services/", null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -119,7 +130,7 @@ class Booking(models.Model):
     time = models.TimeField()
 
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-
+    
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Pending")
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -133,3 +144,4 @@ class Booking(models.Model):
         self.total_price = total
         self.save()
         return total
+    

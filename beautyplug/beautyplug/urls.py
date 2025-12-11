@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('cosmetics.urls')),
     path('', views.service_list, name='home'),
-    path('', lambda request: redirect('dashboard')),  
+  
     
 ]

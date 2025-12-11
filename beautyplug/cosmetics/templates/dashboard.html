@@ -1,138 +1,81 @@
-<!-- templates/dashboard/dashboard.html -->
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Admin Dashboard{% endblock %}
 
 {% block content %}
 <!-- Header -->
- <div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <h2 class="mb-1"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</h2>
         <p class="text-muted mb-0">Manage all client appointments</p>
     </div>
-    <div class="d-flex gap-2">
-        <a href="{% url 'add' %}" class="btn btn-primary">
-            <i class="fas fa-plus me-1"></i> New Appointment
-        </a>
-        <button class="btn btn-outline-secondary" onclick="window.print()">
-            <i class="fas fa-print me-1"></i> Print
-        </button>
-    </div>
-</div> 
+    <div class="d-flex gap-2 align-items-center">
+    <!-- New Booking -->
+    <a href="{% url 'book_appointment' %}" 
+       class="btn btn-primary d-flex align-items-center px-3 py-2 shadow-sm rounded-3">
+        <i class="fas fa-plus me-1"></i> New Booking
+    </a>
 
-Statistics Cards
- <div class="row mb-4">
-    <div class="col-xl-2 col-md-4 mb-3">
-        <div class="card stat-card border-left-primary">
+    <!-- Print -->
+    <button class="btn btn-outline-secondary d-flex align-items-center px-3 py-2 shadow-sm rounded-3" 
+            onclick="window.print()">
+        <i class="fas fa-print me-1"></i> Print
+    </button>
+
+    <!-- Logout -->
+    <a href="{% url 'logout' %}" 
+       class="btn btn-danger d-flex align-items-center px-3 py-2 shadow-sm rounded-3">
+        <i class="fas fa-sign-out-alt me-1"></i> Log out
+    </a>
+</div>
+
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
             <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <div class="text-muted small">Total Appointments</div>
-                        <div class="h4 mb-0">{{ stats.total }}</div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <i class="fas fa-calendar-alt fa-2x text-primary"></i>
-                    </div>
-                </div>
+                <h5 class="card-title">Total Bookings</h5>
+                <p class="card-text">{{ total_bookings }}</p>
             </div>
         </div>
     </div>
-
-    <div class="col-xl-2 col-md-4 mb-3">
-        <div class="card stat-card border-left-warning">
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
             <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <div class="text-muted small">Pending</div>
-                        <div class="h4 mb-0">{{ stats.pending }}</div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <i class="fas fa-clock fa-2x text-warning"></i>
-                    </div>
-                </div>
+                <h5 class="card-title">Pending</h5>
+                <p class="card-text">{{ pending_bookings }}</p>
             </div>
         </div>
     </div>
-
-    <div class="col-xl-2 col-md-4 mb-3">
-        <div class="card stat-card border-left-success">
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
             <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <div class="text-muted small">Approved</div>
-                        <div class="h4 mb-0">{{ stats.approved }}</div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <i class="fas fa-check-circle fa-2x text-success"></i>
-                    </div>
-                </div>
+                <h5 class="card-title">Approved</h5>
+                <p class="card-text">{{ approved_bookings }}</p>
             </div>
         </div>
     </div>
-
-    <div class="col-xl-2 col-md-4 mb-3">
-        <div class="card stat-card border-left-danger">
+    <div class="col-md-3">
+        <div class="card text-white bg-danger mb-3">
             <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <div class="text-muted small">Rejected</div>
-                        <div class="h4 mb-0">{{ stats.rejected }}</div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <i class="fas fa-times-circle fa-2x text-danger"></i>
-                    </div>
-                </div>
+                <h5 class="card-title">Rejected</h5>
+                <p class="card-text">{{ rejected_bookings }}</p>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="col-xl-2 col-md-4 mb-3">
-        <div class="card stat-card border-left-info">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <div class="text-muted small">Today's</div>
-                        <div class="h4 mb-0">{{ stats.today }}</div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <i class="fas fa-calendar-day fa-2x text-info"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-2 col-md-4 mb-3">
-        <div class="card stat-card border-left-secondary">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <div class="text-muted small">Completed</div>
-                        <div class="h4 mb-0">{{ stats.completed }}</div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <i class="fas fa-clipboard-check fa-2x text-secondary"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> 
-
-<!-- Filters and Search -->
+<!-- Filters -->
 <div class="card mb-4">
     <div class="card-body">
         <form method="get" class="row g-3">
             <div class="col-md-4">
                 <label class="form-label">Search</label>
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control" 
-                           placeholder="Search by name, email, phone..." 
-                           value="{{ search_query }}">
-                    <button class="btn btn-outline-primary" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <input type="text" name="search" class="form-control" placeholder="Search by client or service..." value="{{ search_query }}">
+                    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
                 </div>
             </div>
             <div class="col-md-3">
@@ -140,7 +83,7 @@ Statistics Cards
                 <select name="status" class="form-select">
                     <option value="all" {% if status_filter == 'all' %}selected{% endif %}>All Status</option>
                     {% for value, label in status_options %}
-                    <option value="{{ value }}" {% if status_filter == value %}selected{% endif %}>{{ label }}</option>
+                        <option value="{{ value }}" {% if status_filter == value %}selected{% endif %}>{{ label }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -156,26 +99,16 @@ Statistics Cards
             </div>
             <div class="col-md-2 d-flex align-items-end">
                 <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-filter me-1"></i> Filter
-                    </button>
-                    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
-                        <i class="fas fa-redo"></i>
-                    </a>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-filter me-1"></i> Filter</button>
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary"><i class="fas fa-redo"></i></a>
                 </div>
             </div>
         </form>
     </div>
-</div> 
+</div>
 
-
- <div class="card shadow">
-    <div class="card-header bg-white d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">
-            <i class="fas fa-list me-2"></i>Appointments
-            <span class="badge bg-primary ms-2">{{ clients.count }}</span>
-        </h5>
-    </div>
+<!-- Bookings Table -->
+<div class="card shadow">
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-hover mb-0">
@@ -183,183 +116,118 @@ Statistics Cards
                     <tr>
                         <th>Client</th>
                         <th>Service</th>
-                        <th>Appointment</th>
+                        <th>Booking Time</th>
+                        <th>Total Price</th>
                         <th>Status</th>
-                        <th>Created</th>
+                        <th>Created At</th>
                         <th class="text-end">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {% for client in clients %}
-                    <tr>
-                        <td>
-                            <div class="fw-bold">{{ client.name }}</div>
-                            <small class="text-muted">{{ client.email }}</small><br>
-                            <small>{{ client.phone }}</small>
-                        </td>
-                        <td>
-                            <span class="badge bg-info">{{ client.get_service_type_display }}</span>
-                        </td>
-                        <td>
-                            <div>{{ client.appointment_date|date:"M d, Y" }}</div>
-                            <small class="text-muted">{{ client.appointment_date|date:"h:i A" }}</small>
-                        </td>
-                        <td>
-                            {% if client.status == 'pending' %}
-                            <span class="badge-status bg-warning text-dark">
-                                <i class="fas fa-clock me-1"></i> {{ client.get_status_display }}
-                            </span>
-                            {% elif client.status == 'approved' %}
-                            <span class="badge-status bg-success">
-                                <i class="fas fa-check me-1"></i> {{ client.get_status_display }}
-                            </span>
-                            {% elif client.status == 'rejected' %}
-                            <span class="badge-status bg-danger">
-                                <i class="fas fa-times me-1"></i> {{ client.get_status_display }}
-                            </span>
-                            {% elif client.status == 'completed' %}
-                            <span class="badge-status bg-info">
-                                <i class="fas fa-check-double me-1"></i> {{ client.get_status_display }}
-                            </span>
-                            {% endif %}
-                        </td>
-                        <td>{{ client.created_at|date:"M d, Y" }}</td>
-                        <td class="text-end">
-                            <div class="btn-group" role="group">
-                                {% if client.status == 'pending' %}
-                                <a href="{% url 'edit' client.id 'approved' %}" 
-                                   class="btn btn-sm btn-success btn-action" title="Approve">
-                                    <i class="fas fa-check"></i>
-                                </a>
-                                <a href="{% url 'update_status' client.id 'rejected' %}" 
-                                   class="btn btn-sm btn-danger btn-action" title="Reject">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                                {% elif client.status == 'approved' %}
-                                <a href="{% url 'update_status' client.id 'completed' %}" 
-                                   class="btn btn-sm btn-info btn-action" title="Mark Completed">
-                                    <i class="fas fa-check-double"></i>
-                                </a>
-                                {% endif %}
-                                <a href="{% url 'edit_client' client.id %}" 
-                                   class="btn btn-sm btn-primary btn-action" title="Edit">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <button type="button" class="btn btn-sm btn-danger btn-action" 
-                                        data-bs-toggle="modal" data-bs-target="#deleteModal{{ client.id }}"
-                                        title="Delete">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div> 
+            <tbody>
+    {% for booking in bookings %}
+    <tr>
+        <!-- Client Info -->
+        <td>
+            {% if booking.client_name %}
+                {{ booking.client_name }}
+                <br>
+                <small>{{ booking.client_email }} | {{ booking.client_phone }}</small>
+            {% elif booking.client %}
+                {{ booking.client.username }}
+                <br>
+                <small>{{ booking.client.email }}
+                {% if booking.client.profile.phone_number %} | {{ booking.client.profile.phone_number }}{% endif %}</small>
+            {% else %}
+                Unknown Client
+            {% endif %}
+        </td>
 
-                            <!-- Delete Modal -->
-                            <div class="modal fade" id="deleteModal{{ client.id }}" tabindex="-1">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Confirm Delete</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Are you sure you want to delete this appointment?</p>
-                                            <div class="alert alert-warning">
-                                                <strong>{{ client.name }}</strong><br>
-                                                {{ client.get_service_type_display }}<br>
-                                                {{ client.appointment_date|date:"M d, Y h:i A" }}
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <form method="post" action="{% url 'delete_client' client.id %}">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn btn-danger">Delete Appointment</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                         </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="6" class="text-center py-4">
-                            <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
-                            <h5>No appointments found</h5>
-                            <p class="text-muted">Try changing your filters or add a new appointment.</p>
-                            <a href="{% url 'add' %}" class="btn btn-primary">
-                                <i class="fas fa-plus me-1"></i> Add First Appointment
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
+        <!-- Services -->
+        <td>
+            {% if booking.services.all %}
+                {% for service in booking.services.all %}
+                    <span class="badge bg-info text-dark">{{ service.name }}</span>
+                {% endfor %}
+            {% else %}
+                {{ booking.service }}
+            {% endif %}
+        </td>
+
+        
+     <td>
+        {{ booking.date|date:"M d, Y" }}<br>
+        <small>{{ booking.time|time:"H:i" }}</small>
+    </td>
+<!-- Total Price -->
+    <td>Ksh{{ booking.total_price }}</td>
+
+        <!-- Status -->
+        <td>
+            <span class="badge
+                {% if booking.status == 'Pending' %}bg-warning text-dark
+                {% elif booking.status == 'Approved' %}bg-success
+                {% elif booking.status == 'Rejected' %}bg-danger
+                {% endif %}">
+                {{ booking.status }}
+            </span>
+        </td>
+
+         <td>
+        <span class="booking-created" data-timestamp="{{ booking.created_at|date:'c' }}"></span>
+    </td>
+
+        <td class="text-end">
+            <div class="btn-group" role="group">
+         <!-- Reject button (always available) -->
+        <a href="{% url 'update_booking_status' booking.id 'reject' %}" class="btn btn-sm btn-danger">Reject</a>
+
+        <!-- Optional: Approve button if you still want it -->
+        <a href="{% url 'update_booking_status' booking.id 'approve' %}" class="btn btn-sm btn-success">Approve</a>
+    </div>
+
+                <a href="{% url 'delete_booking' booking.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+            </div>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="6" class="text-center py-4">No bookings found.</td>
+    </tr>
+    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
-</div> 
+</div>
+<script>
+function updateBookingTimes() {
+    const elements = document.querySelectorAll('.booking-created');
+    elements.forEach(el => {
+        const timestamp = el.dataset.timestamp;
+        const time = new Date(timestamp);
+        const now = new Date();
+        const diff = Math.floor((now - time) / 1000); // in seconds
 
-<!-- Upcoming Appointments -->
-<div class="row mt-4">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h6 class="mb-0"><i class="fas fa-calendar-check me-2"></i>Upcoming Appointments</h6>
-            </div>
-            <div class="card-body">
-                <div class="list-group list-group-flush">
-                    {% for client in upcoming %}
-                    <div class="list-group-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="mb-1">{{ client.name }}</h6>
-                                <small class="text-muted">{{ client.get_service_type_display }}</small>
-                            </div>
-                            <div class="text-end">
-                                <small class="text-muted">{{ client.appointment_date|date:"M d" }}</small><br>
-                                <small class="text-primary">{{ client.appointment_date|date:"h:i A" }}</small>
-                            </div>
-                        </div>
-                    </div>
-                    {% empty %}
-                    <div class="text-center py-3">
-                        <i class="fas fa-calendar-times fa-2x text-muted mb-2"></i>
-                        <p class="text-muted mb-0">No upcoming appointments</p>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
+        let display = '';
+        if (diff < 60) {
+            display = 'just now';
+        } else if (diff < 3600) {
+            const mins = Math.floor(diff / 60);
+            display = mins + ' min ago';
+        } else if (diff < 86400) {
+            const hours = Math.floor(diff / 3600);
+            display = hours + ' hr ago';
+        } else {
+            const days = Math.floor(diff / 86400);
+            display = days + ' day' + (days > 1 ? 's' : '') + ' ago';
+        }
 
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h6 class="mb-0"><i class="fas fa-history me-2"></i>Recent Appointments</h6>
-            </div>
-            <div class="card-body">
-                <div class="list-group list-group-flush">
-                    {% for client in recent %}
-                    <div class="list-group-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="mb-1">{{ client.name }}</h6>
-                                <small class="text-muted">{{ client.get_service_type_display }}</small>
-                            </div>
-                            <div>
-                                <span class="badge bg-{% if client.status == 'completed' %}success{% elif client.status == 'pending' %}warning text-dark{% else %}primary{% endif %}">
-                                    {{ client.get_status_display }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    {% empty %}
-                    <div class="text-center py-3">
-                        <p class="text-muted mb-0">No recent appointments</p>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> 
+        el.textContent = display;
+    });
+}
+
+// Initial update and every 60s
+updateBookingTimes();
+setInterval(updateBookingTimes, 60000);
+</script>
 {% endblock %}

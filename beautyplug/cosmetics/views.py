@@ -1,11 +1,11 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render,  get_object_or_404, resolve_url
 from django.urls import  reverse_lazy
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import  AppointmentForm, RegisterForm, ClientForm, ContactForm, ReviewForm, ServiceForm
+from .forms import  AppointmentForm, RegisterForm, ClientForm, ContactForm, ReviewForm, ServiceForm 
 from . models import  Appointment, Booking, Service, Client
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
@@ -146,7 +146,8 @@ def contact(request):
 
 @login_required(login_url='loginpage')
 def allservices(request):
-    return render(request, "allservices.html")
+    services = Service.objects.all()  # fetch all services
+    return render(request, "allservices.html", {"services": services})
 
 class StaffRequiredMixin(UserPassesTestMixin):
   
@@ -330,3 +331,84 @@ def booking_list(request):
     bookings = Appointment.objects.all().order_by('-date', '-time')  # Always assigned
     return render(request, 'bookinglist.html', {'bookings': bookings})
 
+def is_admin(user):
+    return user.is_active and user.is_superuser
+
+@user_passes_test(is_admin, login_url='login')
+
+def dashboard(request):
+    bookings = Booking.objects.all().order_by('-created_at')
+
+    # --- Search ---
+    search_query = request.GET.get('search', '')
+    if search_query:
+        bookings = bookings.filter(
+            client_name__icontains=search_query
+        ) | bookings.filter(
+            client_email__icontains=search_query
+        ) | bookings.filter(
+            service__icontains=search_query
+        )
+
+    # --- Status Filter ---
+    status_filter = request.GET.get('status', 'all')
+    if status_filter != 'all':
+        bookings = bookings.filter(status=status_filter)
+
+    # --- Date Filter ---
+    date_filter = request.GET.get('date', 'all')
+    now = timezone.now()
+    today = now.date()
+    if date_filter == 'today':
+        bookings = bookings.filter(booking_time__date=today)
+    elif date_filter == 'tomorrow':
+        bookings = bookings.filter(booking_time__date=today + timedelta(days=1))
+    elif date_filter == 'week':
+        bookings = bookings.filter(booking_time__date__lte=today + timedelta(days=7), booking_time__date__gte=today)
+    elif date_filter == 'upcoming':
+        bookings = bookings.filter(booking_time__date__gt=today + timedelta(days=7))
+
+    # --- Stats ---
+    total_bookings = bookings.count()
+    pending_bookings = bookings.filter(status='Pending').count()
+    approved_bookings = bookings.filter(status='Approved').count()
+    rejected_bookings = bookings.filter(status='Rejected').count()
+
+    context = {
+        'bookings': bookings,
+        'total_bookings': total_bookings,
+        'pending_bookings': pending_bookings,
+        'approved_bookings': approved_bookings,
+        'rejected_bookings': rejected_bookings,
+        'search_query': search_query,
+        'status_filter': status_filter,
+        'date_filter': date_filter,
+        'status_options': Booking.STATUS_CHOICES
+    }
+    return render(request, 'dashboard.html', context)
+
+@user_passes_test(is_admin, login_url='login')
+def update_booking_status(request, booking_id, action):
+    booking = get_object_or_404(Booking, id=booking_id)
+    if action == 'approve':
+        booking.status = 'Approved'
+    elif action == 'reject':
+        booking.status = 'Rejected'
+    booking.save()
+    messages.success(request, f'Booking status updated to {booking.status}')
+    return redirect('dashboard')
+
+@user_passes_test(is_admin, login_url='login')
+def delete_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    booking.delete()
+    messages.success(request, 'Booking deleted successfully')
+    return redirect('dashboard')
+
+@user_passes_test(is_admin, login_url='login')
+def upload_service(request, service_id):
+    service = get_object_or_404(Service, id=service_id)
+    service.is_active = True
+    service.save()
+    messages.success(request, f"Service '{service.name}' has been uploaded to frontend!")
+    return redirect('serviceslist')  # Redirect to the backend services page

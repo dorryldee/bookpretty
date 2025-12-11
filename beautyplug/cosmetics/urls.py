@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from . import admin_views
+
 
 urlpatterns = [
     path('',views.home,name='homepage'),
@@ -23,14 +23,21 @@ urlpatterns = [
     path('<int:pk>/delete/', views.ClientDeleteView.as_view(), name='delete'),
     path('<int:pk>/approve/', views.ApproveClientView.as_view(), name='approve'),
     path('<int:pk>/reject/', views.RejectClientView.as_view(), name='reject'),
+    path('upload_service/<int:service_id>/', views.upload_service, name='upload_service'),
     path('serviceslist/', views.ServiceListView.as_view(), name='serviceslist'),
     path('services/add/', views.ServiceCreateView.as_view(), name='addservice'),
     path('services/<int:pk>/edit/', views.ServiceUpdateView.as_view(), name='editservice'),
     path('bookings/', views.booking_list, name='bookinglist'),
     path('book/', views.book_appointment, name='book_appointment'),
-    path('admin/bookings/', admin_views.admin_bookings, name='admin_bookings'),
-    path('admin/approve/<int:id>/', admin_views.approve_booking, name='approve_booking'),
-    path('admin/reject/<int:id>/', admin_views.reject_booking, name='reject_booking'),
+    # path('dashboard/bookings/', admin_views.admin_bookings, name='admin_bookings'),
+    # path('dashboard/bookings/approve/<int:booking_id>/', admin_views.approve_booking, name='approve_booking'),
+    # path('dashboard/bookings/reject/<int:booking_id>/', admin_views.reject_booking, name='reject_booking'),
+    # path('dashboard/bookings/edit/<int:id>/', admin_views.edit_booking, name='edit_booking'),
+    # path('dashboard/bookings/update/<int:booking_id>/<str:status>/', admin_views.update_status, name='update_status'),
+    # path('dashboard/bookings/delete/<int:booking_id>/', admin_views.delete_booking, name='delete_booking'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('booking/<int:booking_id>/<str:action>/', views.update_booking_status, name='update_booking_status'),
+    path('booking/delete/<int:booking_id>/', views.delete_booking, name='delete_booking'),
     path("admin/clients/", views.admin_client_list, name="admin_clients"),
     path("admin/clients/add/", views.add_personal_client, name="add_personal_client"),
 ]
